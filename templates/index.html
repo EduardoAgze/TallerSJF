@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Taller Mecánico SJF</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <h1>Taller Mecánico SJF</h1>
+
+    <section id="estado-mecanico">
+        <h2>Estado del Mecánico</h2>
+        <div id="info-mecanico">Cargando...</div>
+    </section>
+
+    <section id="cola-autos">
+        <h2>Cola de Autos en Espera</h2>
+        <ul id="lista-cola"></ul>
+    </section>
+
+    <section id="controles">
+        <h2>Agregar Auto</h2>
+        <div id="botones-agregar">
+            <button class="btn-agregar" data-tiempo="2">Auto Rápido (2s)</button>
+            <button class="btn-agregar" data-tiempo="5">Auto Normal (5s)</button>
+            <button class="btn-agregar" data-tiempo="10">Auto Lento (10s)</button>
+        </div>
+    </section>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
