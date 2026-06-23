@@ -12,20 +12,12 @@ class MinHeap:
         self._data = []
 
     """
-    Peek: Devuelve el elemento mínimo sin extraerlo.
     esta_vacio: Devuelve True si el montículo está vacío, False en caso contrario.
-    tamaño: Devuelve el número de elementos en el montículo.
     obtener_autos: Devuelve una lista de los autos en el montículo.
     
     """
-    def peek(self):
-        return self._data[0] if not self.esta_vacio() else None
-
     def esta_vacio(self):
         return len(self._data) == 0
-
-    def tamaño(self):
-        return len(self._data)
     
     def obtener_autos(self):
         return list(self._data)

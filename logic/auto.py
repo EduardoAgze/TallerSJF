@@ -40,8 +40,8 @@ class Auto:
     def to_dict(self):
         """Convierte el Auto a un diccionario JSON-serializable.
 
-        Necesario para enviar el objeto al navegador, ya que JSON no
-        serializa objetos Python personalizados directamente.
+        Devuelve:
+            dict: Diccionario con las propiedades del Auto.
         """
         return {
             "modelo": self.modelo,
