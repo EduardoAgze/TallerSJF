@@ -1,7 +1,7 @@
 class MinHeap:
     # Montículo mínimo con capacidad limitada.
 
-    MAX = 10  # límite de clientes en cola
+    MAX = 10  # límite de autos en cola
 
     def __init__(self):
         """Inicializa una nueva instancia de MinHeap.
@@ -15,6 +15,7 @@ class MinHeap:
     Peek: Devuelve el elemento mínimo sin extraerlo.
     esta_vacio: Devuelve True si el montículo está vacío, False en caso contrario.
     tamaño: Devuelve el número de elementos en el montículo.
+    obtener_autos: Devuelve una lista de los autos en el montículo.
     
     """
     def peek(self):
@@ -25,14 +26,17 @@ class MinHeap:
 
     def tamaño(self):
         return len(self._data)
+    
+    def obtener_autos(self):
+        return list(self._data)
 
 
 
-    def insertar(self, cliente):
+    def insertar(self, auto):
         """Inserta un elemento en el montículo.
 
         Parámetros:
-            cliente: Valor a insertar de la clase Cliente.
+            auto: Valor a insertar de la clase Auto.
 
         Devuelve:
             bool: True si la inserción tuvo éxito; False si se alcanzó
@@ -42,7 +46,7 @@ class MinHeap:
         if len(self._data) >= self.MAX:
             return False
 
-        self._data.append(cliente)
+        self._data.append(auto)
         self._flotar(len(self._data) - 1)
         return True
 
