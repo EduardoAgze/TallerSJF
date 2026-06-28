@@ -1,3 +1,17 @@
+class Auto:
+    def __init__(self, nombre, falla, tiempo_ejecucion):
+        self.nombre = nombre
+        self.falla = falla
+        self.tiempo_ejecucion = tiempo_ejecucion
+
+    def __lt__(self, otro):
+        return self.tiempo_ejecucion < otro.tiempo_ejecucion
+    
+    def __repr__(self):
+        return f"Auto(nombre={self.nombre}, falla={self.falla}, tiempo_ejecucion={self.tiempo_ejecucion}hrs)"
+
+
+
 class MinHeap:
     # Montículo mínimo con capacidad limitada.
 
@@ -11,16 +25,11 @@ class MinHeap:
 
         self._data = []
 
-    """
-    esta_vacio: Devuelve True si el montículo está vacío, False en caso contrario.
-    obtener_autos: Devuelve una lista de los autos en el montículo.
-    
-    """
-    def esta_vacio(self):
-        return len(self._data) == 0
-    
-    def obtener_autos(self):
-        return list(self._data)
+
+    def obtener_lista(self):
+        """Devuelve la lista interna del min-heap."""
+        return self._data
+
 
 
 
@@ -29,10 +38,9 @@ class MinHeap:
 
         Parámetros:
             auto: Valor a insertar de la clase Auto.
-
-        Devuelve:
-            bool: True si la inserción tuvo éxito; False si se alcanzó
-            la capacidad máxima (MAX).
+            
+        Devuelve True si la inserción fue exitosa, o False si el montículo
+        ya estaba lleno.
         """
 
         if len(self._data) >= self.MAX:

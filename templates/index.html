@@ -1,33 +1,36 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Taller Mecánico SJF</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Taller Mecánico</title>
 </head>
 <body>
 
-    <h1>Taller Mecánico SJF</h1>
 
-    <section id="estado-mecanico">
-        <h2>Estado del Mecánico</h2>
-        <div id="info-mecanico">Cargando...</div>
-    </section>
 
-    <section id="cola-autos">
-        <h2>Cola de Autos en Espera</h2>
-        <ul id="lista-cola"></ul>
-    </section>
+    <h1>Taller Mecánico - Cola de Autos</h1>
+    <h3>Autos en la cola:</h3>
+    <ul>
+        {% for auto in autos %}
+            <li>{{ auto }}</li>
+        {% endfor %}
+    </ul>
 
-    <section id="controles">
-        <h2>Agregar Auto</h2>
-        <div id="botones-agregar">
-            <button class="btn-agregar" data-tiempo="2">Auto Rápido (2s)</button>
-            <button class="btn-agregar" data-tiempo="5">Auto Normal (5s)</button>
-            <button class="btn-agregar" data-tiempo="10">Auto Lento (10s)</button>
-        </div>
-    </section>
 
     
+    <form method="POST" action="/agregar">
+        <label>Nombre del auto:</label>
+        <input type="text" name="nombre" required>
+        
+        <label>Falla:</label>
+        <input type="text" name="falla" required>
+        
+        <label>Tiempo de ejecución (hrs):</label>
+        <input type="number" name="tiempo" required>
+        
+        <button type="submit">Agregar auto</button>
+    </form>
+
+
+
 </body>
 </html>
