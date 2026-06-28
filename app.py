@@ -1,29 +1,12 @@
-from flask import Flask, render_template, request, redirect, flash
-from models.todo import MinHeap, Auto
+from flask import Flask
+from controller.auto_controller import index, agregar, siguiente
 
 app = Flask(__name__)
+app.secret_key = '3108' 
 
-# El heap vive aquí (en memoria, mientras corre la app)
-cola = MinHeap()
-
-@app.route('/')
-def index():
-    
-    lista= cola.obtener_lista()
-    autos_ordenados = sorted(lista)
-    return render_template('index.html', autos=autos_ordenados)
-
-
-
-
-@app.route('/agregar', methods=['POST'])
-def agregar():
-    nombre = request.form['nombre']
-    falla = request.form['falla']
-    tiempo = int(request.form['tiempo'])
-
-    auto = Auto(nombre, falla, tiempo)
-    cola.insertar(auto)
+app.add_url_rule('/', view_func=index, methods=['GET'])
+app.add_url_rule('/agregar', view_func=agregar, methods=['POST'])
+app.add_url_rule('/siguiente', view_func=siguiente, methods=['POST'])
 
 if __name__ == '__main__':
     app.run(debug=True)

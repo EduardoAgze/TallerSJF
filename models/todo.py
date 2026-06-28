@@ -8,7 +8,7 @@ class Auto:
         return self.tiempo_ejecucion < otro.tiempo_ejecucion
     
     def __repr__(self):
-        return f"Auto(nombre={self.nombre}, falla={self.falla}, tiempo_ejecucion={self.tiempo_ejecucion}hrs)"
+        return f"Nombre: {self.nombre}, Falla: {self.falla}, Tiempo de ejecución: {self.tiempo_ejecucion}hrs"
 
 
 
@@ -29,6 +29,10 @@ class MinHeap:
     def obtener_lista(self):
         """Devuelve la lista interna del min-heap."""
         return self._data
+    
+    def esta_vacio(self):
+        """Verifica si el montículo está vacío."""
+        return len(self._data) == 0
 
 
 
