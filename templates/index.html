@@ -1,54 +1,87 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Taller Mecánico</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller Mecánico Pixel</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
+
 <body>
 
+   
+        <header class="pixel-panel hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Taller mecánico</p>
+                <h1>Cola de autos</h1>
+                <p>Gestión de reparaciones.</p>
+            </div>
+
+            <div class="mechanic-scene">
+                <div class="speech-bubble">
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <h2>El mecánico dice</h2>
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        {% else %}
+                            <p>...</p>
+                        {% endif %}
+                    {% endwith %}
+                </div>
+                <img src="{{ url_for('static', filename='mecanico.png') }}" alt="Mecánico" class="mechanic">
+            </div>
+        </header>
+
+
+
+        <main class="dashboard">
+            <section class="pixel-panel queue-panel">
+                <h2>Autos en la cola</h2>
+                {% if autos %}
+                    <ul class="queue-list">
+                        {% for auto in autos %}
+                            <li>{{ auto }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p class="empty-state">Sin autos por ahora.</p>
+                {% endif %}
+            </section>
 
 
 
 
-    <h1>Taller Mecánico - Cola de Autos</h1>
-    <h3>Autos en la cola:</h3>
-    <ul>
-        {% for auto in autos %}
-            <li>{{ auto }}</li>
-        {% endfor %}
-    </ul>
 
+            <section class="pixel-panel form-panel">
+                <h2>Agregar auto</h2>
+                <form method="POST" action="/agregar" class="pixel-form">
+                    <label for="nombre">Nombre del auto</label>
+                    <input type="text" id="nombre" name="nombre" required>
 
-    
-    <form method="POST" action="/agregar">
-        <label>Nombre del auto:</label>
-        <input type="text" name="nombre" required>
-        
-        <label>Falla:</label>
-        <input type="text" name="falla" required>
-        
-        <label>Tiempo de ejecución (hrs):</label>
-        <input type="number" name="tiempo" required>
-        
-        <button type="submit">Agregar auto</button>
-    </form>
+                    <label for="falla">Falla</label>
+                    <input type="text" id="falla" name="falla" required>
 
-    <form method="POST" action="/siguiente">
-        <button type="submit">SIGUIENTE AUTO</button>
-    </form>
+                    <label for="tiempo">Tiempo de ejecución (hrs)</label>
+                    <input type="number" id="tiempo" name="tiempo" required>
+
+                    <button type="submit">AGREGAR AUTO</button>
+                </form>
 
 
 
-    <img src="{{ url_for('static', filename='mecanico.png') }}" alt="Mecánico" height="150">
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            
-            {% for message in messages %}
-                <p>{{ message }}</p>
-            {% endfor %}
-            
-        {% endif %}
-    {% endwith %}
+                <form method="POST" action="/siguiente" class="next-form">
+                    <button type="submit" class="secondary">SIGUIENTE AUTO</button>
+                </form>
+            </section>
+        </main>
 
 
 </body>
+
+
+
+
 </html>
