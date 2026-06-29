@@ -8,12 +8,12 @@ class Auto:
         return self.tiempo_ejecucion < otro.tiempo_ejecucion
     
     def __repr__(self):
-        return f"Nombre: {self.nombre}, Falla: {self.falla}, Tiempo de ejecución: {self.tiempo_ejecucion}hrs"
+        return f"{self.nombre} (Falla: {self.falla}, Tiempo de ejecución: {self.tiempo_ejecucion}hrs)"
 
 
 
 class MinHeap:
-    # Montículo mínimo con capacidad limitada.
+    # Montículo mínimo
 
     MAX = 10  # límite de autos en cola
 
