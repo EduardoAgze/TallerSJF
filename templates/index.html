@@ -38,7 +38,7 @@
 
 
 
-    <img src="../assets/mecanico.png" alt="Mecánico" height="150">
+    <img src="{{ url_for('static', filename='mecanico.png') }}" alt="Mecánico" height="150">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             
