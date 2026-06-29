@@ -1,13 +1,25 @@
 class Auto:
+    """Representa un auto con su nombre, falla y tiempo de ejecución.
+
+    Posee un atributo adicional `orden_llegada` para mantener el orden de llegada.
+    """
+
     def __init__(self, nombre, falla, tiempo_ejecucion):
+        """Inicializa un auto con nombre, falla y tiempo de ejecución."""
         self.nombre = nombre
         self.falla = falla
         self.tiempo_ejecucion = tiempo_ejecucion
+        self.orden_llegada = 0  
 
     def __lt__(self, otro):
+        """Compara autos según tiempo de ejecución y orden de llegada."""
+        if self.tiempo_ejecucion == otro.tiempo_ejecucion:
+            return self.orden_llegada < otro.orden_llegada
+
         return self.tiempo_ejecucion < otro.tiempo_ejecucion
-    
-    def __repr__(self):
+
+    def __str__(self):
+        """Devuelve una representación legible de cada elemento."""
         return f"{self.nombre} (Falla: {self.falla}, Tiempo de ejecución: {self.tiempo_ejecucion}hrs)"
 
 
@@ -24,6 +36,7 @@ class MinHeap:
         """
 
         self._data = []
+        self._contador = 0 
 
 
     def obtener_lista(self):
@@ -50,6 +63,8 @@ class MinHeap:
         if len(self._data) >= self.MAX:
             return False
 
+        self._contador += 1
+        auto.orden_llegada = self._contador
         self._data.append(auto)
         self._flotar(len(self._data) - 1)
         return True
